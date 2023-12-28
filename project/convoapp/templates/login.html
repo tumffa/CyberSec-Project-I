@@ -1,0 +1,15 @@
+<h1>Please login to use ConvoApp.</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+<form action="/register/" method="POST">
+    {% csrf_token %}
+    <h2>Create Account</h2>
+    Username: <input type="text" id="username" name="username" required>
+    <p>
+    Password: <input type="password" id="password" name="password" required>
+    <p>
+    <button type="submit">Create Account</button>
+</form>

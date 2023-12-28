@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ConvoApp</title>
+    </head>
+    <body>
+        <h1>You are logged in as {{ yourusername }}.</h1>
+        <form action="/postmessage" method="GET">
+            <h2>Post Message</h2>
+            Message: 
+            <p>
+            <textarea id="message" name="message" required></textarea>
+            <input type="hidden" id="username" name="username" value="{{ yourusername }}">
+            <p>
+            <button type="submit">Post Message</button>
+        </form>
+        <!--
+        FIXED CODE
+        <form action="/postmessage" method="POST">
+            {% csrf_token %}
+            <h2>Post Message</h2>
+            Message: 
+            <p>
+            <textarea id="message" name="message" required></textarea>
+            <input type="hidden" id="username" name="username" value="{{ yourusername }}">
+            <p>
+            <button type="submit">Post Message</button>
+        </form>
+        -->
+        <h2>Messages</h2>
+        <ul>
+            {% for message in messages %}
+            <li>{{ message.username|safe }}: {{ message.text|safe }}</li>
+            {% endfor %}
+        </ul>
+        <!--
+        FIXED CODE
+        <h2>Messages</h2>
+        <ul>
+            {% for message in messages %}
+            <li>{{ message.username }}: {{ message.text }}</li>
+            {% endfor %}
+        -->
+        <form action="/logout/" method="POST">
+            {% csrf_token %}
+            <button type="submit">Log Out</button>
+        </form>
+    </body>
+</html>
